@@ -9,7 +9,7 @@ class DockingStation
 
     def release_bike
       raise 'No bikes available' unless @bikes.length != 0
-      @bikes.shift
+      @bikes.shift 
     end
 
     def dock(bike)
