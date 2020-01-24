@@ -10,7 +10,7 @@ describe DockingStation do
     it 'releases a bike when a bike is available' do
       bike = Bike.new
       subject.dock(bike)
-      expect(subject.release_bike).to eq bike
+      expect(subject.release_bike).to be_an_instance_of(Bike)
     end
 
     it 'raises an error when no bikes available' do
@@ -21,13 +21,12 @@ describe DockingStation do
 
   it 'sees bike in DockingStation' do
     bike = Bike.new
-    expect(subject.dock(bike)).to eq bike
+    expect(subject.dock(bike).length).to be > 0
   end
 
-  it "doesn't accept a bike if full" do
-    bike = Bike.new
-    subject.dock(bike)
-    expect { subject.dock(bike) }.to raise_error("Station already full")
+  it "doesn't accept a bike if full" do 
+    20.times { subject.dock(Bike.new) }
+    expect { subject.dock(Bike.new) }.to raise_error("Station already full")
   end
 
 end
