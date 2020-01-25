@@ -12,11 +12,13 @@ class DockingStation
 
     def release_bike
       raise 'No bikes available' if empty?
+
       @bikes.shift 
     end
 
     def dock(bike)
       raise "Station already full" if full?
+      
       @bikes << bike
     end
     
